@@ -172,6 +172,7 @@ function NumberConvert(){
             document.getElementById("output_N").innerHTML = ans;
         }
     }
+    //from here we have to complete the function and find the bug
     else if(input_1.options[input_1.selectedIndex].value == 2){
         try{
             if(input_2.options[input_2.selectedIndex].value == 1){
