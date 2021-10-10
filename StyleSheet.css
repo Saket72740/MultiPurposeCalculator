@@ -1,0 +1,16 @@
+body{
+    background-color:aliceblue;
+}
+.container{
+    margin-top: 5%;
+}
+.card{
+    height:auto;
+    width:100%;
+}
+.col-md-4{
+    margin-top: 5%;
+}
+.btn{
+    margin-right:5%;
+}
