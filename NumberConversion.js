@@ -14,6 +14,7 @@ function NumberConvert(){
         alert("Please provide input");
         return false;       
     }
+
     //binary to different number form
     else if(input_1.options[input_1.selectedIndex].value == 1){
         var count=0;
@@ -146,6 +147,7 @@ function NumberConvert(){
             document.getElementById("output_N").innerHTML = ans;
         }
     }
+
     //decimal to different number form
     else if(input_1.options[input_1.selectedIndex].value == 2){
         var count=0;
@@ -181,29 +183,132 @@ function NumberConvert(){
             document.getElementById("output_N").innerHTML = String(hexadecimal).toUpperCase();
         }
     }
-    else if(input_1.options[input_1.selectedIndex] == 3){
+
+    else if(input_1.options[input_1.selectedIndex].value == 3){
+        var count=0;
+        document.getElementById("output_box").style.visibility = "visible";
+        console.log(num.length);
+        for(i=0;i<num.length;i++){
+            if((num.charAt(i) < '0' || num.charAt(i) >'7') && (num.charAt(i) != '.' || count>=1)){
+                document.getElementById("output_N").innerHTML = "ERROR";
+                console.log(num + " " + num.charAt(i) + " " + i);        
+                return false;
+            }
+            if(num.charAt(i) == '.')
+                count += 1;
+        }
+        console.log(count);
+        var num2 = num.split(".")[0];
+        var num3 = num.split(".")[1];
+        console.log(num2.length + " " + num2 + " " + num3.length + " " + num3);
+        var ans = 0.0;
+        for(i=num2.length-1;i>=0;i--){
+            ans += parseInt(num2.charAt(i))*Math.pow(8,num2.length-1-i);
+        }
+        if(num3 != null){
+            for(i=0;i<=num3.length-1;i++){
+                ans+=  parseFloat(num3.charAt(i))*parseFloat(Math.pow(8,-1*(i+1)));
+            }
+        }
         if(input_2.options[input_2.selectedIndex].value == 1){
+            // var ans = "";
+            // var arr = ["000","001","010","011","100","101","110","111"];
+            // for(var i=0;i<num.length;i++){
+            //     if(num.charAt(i) == ".")
+            //         ans += ".";
+            //     else 
+            //         ans += arr[parseInt(num.charAt(i))];
+            // }
+            var bin = ans.toString(2);
+            console.log(num + " ans O to B = " + ans);
+            document.getElementById("output_N").innerHTML = bin;
 
         }
         else if(input_2.options[input_2.selectedIndex].value == 2){
-
+            console.log(num + " ans O to D = " + ans);
+            document.getElementById("output_N").innerHTML = ans;
         }
         else if(input_2.options[input_2.selectedIndex].value == 3){
             document.getElementById("output_N").innerHTML = num;
         }
         else if(input_2.options[input_2.selectedIndex].value == 4){
-
+            var hex = ans.toString(16).toUpperCase();
+            document.getElementById("output_N").innerHTML = hex;
         }
     }
-    else if(input_1.options[input_1.selectedIndex] == 4){
-        if(input_2.options[input_2.selectedIndex].value == 1){
 
+    else{
+        var count=0;
+        document.getElementById("output_box").style.visibility = "visible";
+        console.log(num.length + " Kumar");
+        for(i=0;i<num.length;i++){
+            if((num.charAt(i) < '0' || num.charAt(i) >'9') && (num.charAt(i) <'A' || num.charAt(i) >'F') && (num.charAt(i) < 'a' || num.charAt(i) >'f') && (num.charAt(i) != '.' || count>=1)){
+                document.getElementById("output_N").innerHTML = "ERROR";
+                console.log(num + " " + num.charAt(i) + " " + i);        
+                return false;
+            }
+            if(num.charAt(i) == '.')
+                count += 1;
+        }
+        num = String(num).toUpperCase();
+        console.log(count + " " + num);
+        var num2 = num.split(".")[0];
+        var num3 = num.split(".")[1];
+        console.log(num2.length + " " + num2 + " " + num3.length + " " + num3);
+        var ans = 0.0;
+        for(i=num2.length-1;i>=0;i--){
+            if(num2.charAt(i)>='0' && num2.charAt(i) <='9')
+                ans += parseInt(num2.charAt(i))*Math.pow(16,num2.length-1-i);
+            else{
+                var a = num2.charAt(i)-'A';
+                ans +=  (10+a)*Math.pow(16,num2.length-1-i);
+            }
+        }
+        console.log("ans " + ans);
+        if(num3 != null){
+            for(i=0;i<=num3.length-1;i++){
+                if(num3.charAt(i)>='0' && num3.charAt(i) <='9')
+                    ans+=  parseFloat(num3.charAt(i))*parseFloat(Math.pow(16,-1*(i+1)));
+                else{
+                    var a = 0;
+                    switch(num3.charAt(i)){
+                        case 'A' || 'a':
+                            a = 10;
+                            break;
+                        case 'B' || 'b':
+                            a = 11;
+                            break;
+                        case 'C' || 'c':
+                            a = 12;
+                            break;
+                        case 'D' || 'd':
+                            a = 13;
+                            break;
+                        case 'E' || 'e':
+                            a = 14;
+                            break;
+                        case 'F' || 'f':
+                            a = 15;
+                            break;
+                        default:
+                            a=999;
+                    }
+                    console.log(a);
+                    ans +=  parseFloat(a)*parseFloat(Math.pow(16,-1*(i+1)));
+                }
+            }
+        }
+        console.log(ans);
+        if(input_2.options[input_2.selectedIndex].value == 1){
+            var bin = ans.toString(2);
+            document.getElementById("output_N").innerHTML = bin;
         }
         else if(input_2.options[input_2.selectedIndex].value == 2){
-
+            document.getElementById("output_N").innerHTML = ans;
         }
         else if(input_2.options[input_2.selectedIndex].value == 3){
-
+            var oct = ans.toString(8);
+            document.getElementById("output_N").innerHTML = oct;
         }
         else if(input_2.options[input_2.selectedIndex].value == 4){
             document.getElementById("output_N").innerHTML = num;
