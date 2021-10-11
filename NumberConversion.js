@@ -1,58 +1,56 @@
-function dec2bin(dec){
-    return (dec >>> 0).toString(2);
-}
 // Number Conversion related function
 function NumberConvert(){
     var input_1 = document.getElementById("input_1");
     var input_2 = document.getElementById("input_2");
-    var num = document.getElementById("input_N").value;
+    var i=0;
     if(input_1.options[input_1.selectedIndex].value == 0 || input_2.options[input_2.selectedIndex].value == 0){
         alert("Please select the number form");
         return false;
     }
+    var num = "";
+    num = document.getElementById("input_N").value;
+    console.log("num = " + num);
+    if(num == ""){
+        alert("Please provide input");
+        return false;       
+    }
+    //binary to different number form
     else if(input_1.options[input_1.selectedIndex].value == 1){
+        var count=0;
+        document.getElementById("output_box").style.visibility = "visible";
+        for(i=0;i<num.length;i++){
+            if(num.charAt(i) != '0' && num.charAt(i) != '1' && (num.charAt(i) != '.' || count>=1)){
+                document.getElementById("output_N").innerHTML = "ERROR";
+                console.log(num + " " + num.charAt(i) + " " + i);        
+                return false;
+            }
+            if(num.charAt(i) == '.')
+                count += 1;
+        }
         if(input_2.options[input_2.selectedIndex].value == 1){
             console.log("ans B to B = " + num);
-            document.getElementById("output_box").style.visibility = "visible";
-            for(var i=0;i<=num2.length;i++){
-                if(num.charAt(i) != '0' || num.charAt(i) != '1'){
-                    document.getElementById("output_N").innerHTML = "ERROR";        
-                    return false;
-                }
-            }
             document.getElementById("output_N").innerHTML = num;
         }
         else if(input_2.options[input_2.selectedIndex].value == 2){
             var num2 = num.split(".")[0];
             var num3 = num.split(".")[1];
             var ans = 0.0;
-            for(var i=num2.length-1;i>=0;i--){
+            for(i=num2.length-1;i>=0;i--){
                 if(num2.charAt(i) == '1')
                     ans += Math.pow(2,num2.length-1-i);
-                else if(num2.charAt(i) == '0')
+                else
                     continue;
-                else{
-                    document.getElementById("output_box").style.visibility = "visible";
-                    document.getElementById("output_N").innerHTML = "ERROR";
-                    return false;
-                }
             }
             if(num3 != null){
-                for(var i=0;i<=num3.length-1;i++){
+                for(i=0;i<=num3.length-1;i++){
                     if(num3.charAt(i) == '1'){
                         ans = ans +  parseFloat(Math.pow(2,-1*(i+1)));
                     }
-                    else if(num3.charAt(i) == '0')
+                    else
                         continue;
-                    else{
-                        document.getElementById("output_box").style.visibility = "visible";
-                        document.getElementById("output_N").innerHTML = "ERROR";
-                        return false;
-                    }
                 }
             }
             console.log(num + " ans B to D = " + ans);
-            document.getElementById("output_box").style.visibility = "visible";
             document.getElementById("output_N").innerHTML = ans;
         }
         else if(input_2.options[input_2.selectedIndex].value == 3){
@@ -60,19 +58,14 @@ function NumberConvert(){
             var num3 = String(num).split(".")[1];
             console.log(num2 + " " + num3);
             var ans = "";
-            var i=num2.length-1;
+            i=num2.length-1;
             while(i>=0){
                 var k = 0;
                 for(var j=i;j>=i-2 && j >=0 ;j--){
                     if(num2.charAt(j) == '1')
                         k += Math.pow(2,i-j);
-                    else if(num2.charAt(j) == '0')
+                    else
                         continue;
-                    else{
-                        document.getElementById("output_box").style.visibility = "visible";
-                        document.getElementById("output_N").innerHTML = "ERROR";
-                        return false;
-                    }
                 }
                 ans += String(k);
                 i -= 3;
@@ -95,13 +88,8 @@ function NumberConvert(){
                             k += Math.pow(2,i+2-j);
                             console.log(k);
                         }
-                        else if(num3.charAt(j) == '0')
+                        else
                             continue;
-                        else{
-                            document.getElementById("output_box").style.visibility = "visible";
-                            document.getElementById("output_N").innerHTML = "ERROR";
-                            return false;
-                        }
                     }
                     ans += String(k);
                     i += 3;
@@ -109,7 +97,6 @@ function NumberConvert(){
             }
             console.log(ans);
             console.log(num + " ans B to O = " + ans);
-            document.getElementById("output_box").style.visibility = "visible";
             document.getElementById("output_N").innerHTML = ans;
         }
         else if(input_2.options[input_2.selectedIndex].value == 4){
@@ -123,14 +110,8 @@ function NumberConvert(){
                 for(var j=i;j>=i-3 && j >=0 ;j--){
                     if(num2.charAt(j) == '1')
                         k += Math.pow(2,i-j);
-                    else if(num2.charAt(j) == '0')
+                    else
                         continue;
-                    else{
-                        console.log(num + " ans B to H ");
-                        document.getElementById("output_box").style.visibility = "visible";
-                        document.getElementById("output_N").innerHTML = "ERROR";
-                        return false;
-                    }
                 }
                 console.log("k = " + arr[k]);
                 ans += String(arr[k]);
@@ -153,14 +134,8 @@ function NumberConvert(){
                     for(var j=i+3;j>=i && j <num3.length ;j--){
                         if(num3.charAt(j) == '1')
                             k += Math.pow(2,i+3-j);
-                        else if(num3.charAt(j) == '0')
+                        else
                             continue;
-                        else{
-                            console.log(num + " ans B to H ");
-                            document.getElementById("output_box").style.visibility = "visible";
-                            document.getElementById("output_N").innerHTML = "ERROR";
-                            return false;
-                        }
                     }
                     console.log("k = " + arr[k]);
                     ans += String(arr[k]);
@@ -168,41 +143,42 @@ function NumberConvert(){
                 }
             }
             console.log(num + " ans B to H = " + ans);
-            document.getElementById("output_box").style.visibility = "visible";
             document.getElementById("output_N").innerHTML = ans;
         }
     }
-    //from here we have to complete the function and find the bug
+    //decimal to different number form
     else if(input_1.options[input_1.selectedIndex].value == 2){
-        try{
-            if(input_2.options[input_2.selectedIndex].value == 1){
-                var num2 = parseFloat(num);
-                console.log(num2);
-                if(isNaN(num2))
-                    throw Error("Input Mismatch");
-                var ans = "";
-                ans = dec2bin(num);
-                console.log(num + " ans B to H = " + ans);
-                document.getElementById("output_box").style.visibility = "visible";
-                document.getElementById("output_N").innerHTML = ans;
+        var count=0;
+        document.getElementById("output_box").style.visibility = "visible";
+        console.log(num.length);
+        for(i=0;i<num.length;i++){
+            if((num.charAt(i) < '0' || num.charAt(i) >'9') && (num.charAt(i) != '.' || count>=1)){
+                document.getElementById("output_N").innerHTML = "ERROR";
+                console.log(num + " " + num.charAt(i) + " " + i);        
+                return false;
             }
-            else if(input_2.options[input_2.selectedIndex].value == 2){
-                var num2 = parseFloat(num);
-                console.log(num2);
-                if(isNaN(num2))
-                    throw Error("Input Mismatch");
-                document.getElementById("output_box").style.visibility = "visible";
-                document.getElementById("output_N").innerHTML = num;
-            }
-            
-            else if(input_2.options[input_2.selectedIndex].value == 3){
-
-            }
-            else if(input_2.options[input_2.selectedIndex].value == 4){
-
-            }
-        }catch{
-            alert("Please give decimal input");
+            if(num.charAt(i) == '.')
+                count += 1;
+        }
+        console.log(count);
+        var num2 = parseFloat(num);
+        console.log(num2);
+        if(input_2.options[input_2.selectedIndex].value == 1){
+            var ans = num2.toString(2);
+            console.log(num + " ans B to H = " + ans);
+            document.getElementById("output_N").innerHTML = ans;
+        }
+        else if(input_2.options[input_2.selectedIndex].value == 2){
+            document.getElementById("output_N").innerHTML = num2;
+        }
+        
+        else if(input_2.options[input_2.selectedIndex].value == 3){
+            var octal = num2.toString(8);
+            document.getElementById("output_N").innerHTML = octal;
+        }
+        else if(input_2.options[input_2.selectedIndex].value == 4){
+            var hexadecimal = num2.toString(16);
+            document.getElementById("output_N").innerHTML = String(hexadecimal).toUpperCase();
         }
     }
     else if(input_1.options[input_1.selectedIndex] == 3){
