@@ -19,35 +19,35 @@
                             <h5>Mathematical Calculator</h5><br>
                             <form>
                                 <div class="form-group">
-                                  <label for="pwd"><b>Input</b></label>
+                                  <label class="form-group" id="inp_oup"><b>Input</b></label>
                                   <input type="text" class="form-control" placeholder="0" id="pwd" disabled>
                                 </div>
                                 <br/>
-                                <button type="button" class="btn btn-outline-dark"><b>1</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>2</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>3</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>+</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="1" onclick="addNumber('1')"><b>1</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="2" onclick="addNumber('2')"><b>2</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="3" onclick="addNumber('3')"><b>3</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="+" onclick="addNumber('+')"><b>+</b></button>
                                 <br><br>
-                                <button type="button" class="btn btn-outline-dark"><b>4</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>5</b></button>   
-                                <button type="button" class="btn btn-outline-dark"><b>6</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>-</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="4" onclick="addNumber('4')"><b>4</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="5" onclick="addNumber('5')"><b>5</b></button>   
+                                <button type="button" class="btn btn-outline-dark" value="6" onclick="addNumber('6')"><b>6</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="-" onclick="addNumber('-')"><b>-</b></button>
                                 <br><br>
-                                <button type="button" class="btn btn-outline-dark"><b>7</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>8</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>9</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>x</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="7" onclick="addNumber('7')"><b>7</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="8" onclick="addNumber('8')"><b>8</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="9" onclick="addNumber('9')"><b>9</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="x" onclick="addNumber('x')"><b>x</b></button>
                                 <br><br>
-                                <button type="button" class="btn btn-outline-dark"><b>0</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>.</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>/</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>Clear</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="0" onclick="addNumber('0')"><b>0</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="." onclick="addNumber('.')"><b>.</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="/" onclick="addNumber('/')"><b>/</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="c" onclick="deleteLastNumber('c')"><b>Clear</b></button>
                                 <br><br>
-                                <button type="button" class="btn btn-outline-dark"><b>(</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>)</b></button>
-                                <button type="button" class="btn btn-outline-dark"><b>Clear All</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="(" onclick="addNumber('(')"><b>(</b></button>
+                                <button type="button" class="btn btn-outline-dark" value=")" onclick="addNumber(')')"><b>)</b></button>
+                                <button type="button" class="btn btn-outline-dark" value="d" onclick="deleteAll('d')"><b>Clear All</b></button>
                                 <br><br>
-                                <button type="button" class="btn btn-primary"> = </button>
+                                <button type="button" class="btn btn-primary" value="=" onclick="calculate()"> = </button>
                             </form>
                         </div>
                     </div>

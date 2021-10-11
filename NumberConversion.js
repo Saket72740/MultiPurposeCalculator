@@ -200,7 +200,7 @@ function NumberConvert(){
         console.log(count);
         var num2 = num.split(".")[0];
         var num3 = num.split(".")[1];
-        console.log(num2.length + " " + num2 + " " + num3.length + " " + num3);
+        console.log(num2.length + " " + num2 + " ");
         var ans = 0.0;
         for(i=num2.length-1;i>=0;i--){
             ans += parseInt(num2.charAt(i))*Math.pow(8,num2.length-1-i);
@@ -254,7 +254,7 @@ function NumberConvert(){
         console.log(count + " " + num);
         var num2 = num.split(".")[0];
         var num3 = num.split(".")[1];
-        console.log(num2.length + " " + num2 + " " + num3.length + " " + num3);
+        console.log(num2.length + " " + num2 + " ");
         var ans = 0.0;
         for(i=num2.length-1;i>=0;i--){
             if(num2.charAt(i)>='0' && num2.charAt(i) <='9')
