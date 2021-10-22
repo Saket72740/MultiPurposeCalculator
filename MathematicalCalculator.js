@@ -1,8 +1,9 @@
-var arr = "";
-var inf = "";
+//Mathematical Calculator related function
+var arr = "";   //to store the input for the html;
+var inf = "";   //used for making infix notation;
 console.log(arr);
-var infix = [];
-var postfix = [];
+var infix = [];     //contains infix elements
+var postfix = [];   //contain postfix elements
 function addNumber(a){
     if(arr.charAt(arr.length-1) == '+' || arr.charAt(arr.length-1) == '-' || arr.charAt(arr.length-1) == 'x' || arr.charAt(arr.length-1) == '/' || arr.charAt(arr.length-1) == '.'){
         if(a == '+' || a == '-' || a == 'x' || a == '/' || a == '.'){
@@ -35,6 +36,7 @@ function deleteAll(){
 
 function calculate(){
     for(var i=0;i<arr.length;i++){
+        //for giving space between two opeator or operand
         if(arr.charAt(i) == '+' || arr.charAt(i) == '-' || arr.charAt(i) == 'x' || arr.charAt(i) == '/' || arr.charAt(i) == '(' || arr.charAt(i) == ')'){
             inf += " ";
             inf += arr.charAt(i);
@@ -44,15 +46,15 @@ function calculate(){
             inf += arr.charAt(i);
     }
     console.log(inf);
-    infix = String(inf).split(" ");
+    infix = String(inf).split(" "); //storing operand and operator value in infix array
     console.log(infix);
-    var count=0;
+    var count=0;    //checking for '(' and ')' validation
     for(var i=0;i<infix.length;i++){
         if(infix[i] == "(")
             count++;
         else if(infix[i] == ")")
             count--;
-        if(!isValid(infix[i])){
+        if(!isValid(infix[i])){     // checking if '.' is typed once for float type.
             document.getElementById("pwd").value = "ERROR";
             return false; 
         }
@@ -62,12 +64,15 @@ function calculate(){
         return false;
     }
     document.getElementById("inp_oup").innerHTML = "<b>Output</b>";
-    infix_to_postfix();
+    infix_to_postfix();     //changing infix to postfix expression
     console.log(infix);
     console.log("postfix " + postfix);
-    var value = eval_postfix();
+    var value = eval_postfix();     //evaluating the value of postfix        
     document.getElementById("pwd").value = value;
-    arr = postfix.toString();
+    arr = value.toString();     //changin value to arr;
+    inf = "";
+    infix = [];
+    postfix = [];
 }
 
 function isValid(a){
@@ -148,11 +153,17 @@ function eval_postfix(){
     var b;
     var temp;
     for(var i=0;i<postfix.length;i++){
-        if(isNumerical(postfix[i]))
+        if(isNumerical(postfix[i])) 
             stack.push(postfix[i]);
         else{
             a = parseFloat(stack.pop());
             b = parseFloat(stack.pop());
+            //condition needed to be added bugs find here e.x : -6*5;
+            if(b == NaN){
+                var def = postfix[i];
+                def += a;
+                return def;
+            }
             switch(postfix[i]){
                 case '+':
                     temp = b+a;
