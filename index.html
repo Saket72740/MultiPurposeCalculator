@@ -97,7 +97,7 @@
                     <div class="card shadow p-3 mb-5 bg-white rounded">
                         <div class="card-body">
                             <h5>Interset calculator</h5><br>
-                            <select class="form-select" aria-label="Default select example" id="selectbox" onchange="selected()">
+                            <select class="form-select" aria-label="Default select example" id="selectbox" onclick="selected()">
                                 <option value="0" selected>Select Interset Type</option>
                                 <option value="1">Simple Interset</option>
                                 <option value="2">Compound Interest</option>
@@ -120,7 +120,7 @@
                                     <label class="form-group"><b>No. of times interest compounded anually</b></label>
                                     <input type="text" class="form-control" placeholder="0" id="notic"><br>
                                 </div>
-                                <button type="button" class="btn btn-primary" onclick="calculateInterest()">Enter</button>
+                                <button type="button" class="btn btn-primary" onchange="calculateInterest()">Enter</button>
                                 <br><br>
                                 <div class="form-group" style="visibility: hidden;" id="inter">
                                     <label class="form-group" id="interest_header"><b>Interest</b></label>
